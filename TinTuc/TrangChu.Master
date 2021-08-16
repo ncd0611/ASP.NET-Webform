@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TrangChu.master.cs" Inherits="TinTuc.TrangChu" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Thoi trang</title>
+    <link href="CSS/StyleSheet.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="header">
+        <div id="menu"> 
+		    <ul>
+			    <li><a href="TrangChu.aspx"">Trang chủ</a></li>
+                <asp:Repeater ID="rpBanTin" runat="server">
+                    <ItemTemplate>
+                        <li><a href="BanTin.aspx?idbantin=<%# Eval("IDBanTin") %>"><%# Eval("noiDung") %></a></li>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <%
+                if ((Boolean)Session["admin"] == false)
+                {
+                    %>
+				        <li><a href="DangNhap.aspx">Đăng nhập</a></li>
+                        <li><a href="DangKy.aspx">Đăng ký</a></li>
+                <%
+                }
+                else
+                {
+                    %>
+                        <li><a href="chitietAdd.aspx">Đăng bài</a></li>
+                        <li><a class="user" href="#"></a></li>
+                        <li><a href="DangXuat.aspx">Đăng xuất</a></li>
+                <%}
+                    %>
+		    </ul>
+	    </div>
+    </div>
+    <div class="body">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div> 
+    <div class="footer row" style="position:relative">
+        <div class="col-12" style="margin:10px 10px 10px 0px">
+            <a href="#menu"><img class="icon" style="float:right" src="Img/Untitled-1.png" /></a>
+            <p>Trang web được thực hiện bởi nhóm 3 lớp tín chỉ: AAW7112020.003</p>
+            <p>Giảng viên hướng dẫn: Trần Tiến Dũng</p>
+            <p>Sinh viên nhóm:</p>
+            <ul style="margin-left:50px">
+                <li>Vũ Đình Chiến – 1810A05</li>
+                <li>Ngô Tiến Quang – 1810A01</li>
+                <li>Nguyễn Công Đức – 1810A01</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
